@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ToDo</title>
+</head>
+
+<body>
+  <h1>ToDo</h1>
+  <label class="todo-form">
+    <input type="text" name="task" class="form-input-task" placeholder="add tour task here.." id="input-line">
+    <button title="add-task" id="add">Add</button>
+  </label>
+  <div class="todo-task-block">
+    <ul class="block-list" id="list"></ul>
+  </div>
+  <div class="todo-filter-block" id="filter">
+    <button id="all" title="all">All</button>
+    <button id="active" title="active">Active</button>
+    <button id="complete" title="complete">Complete</button>
+  </div>
+  <script type="module" src="./src/main.ts"></script>
+</body>
+
+</html>

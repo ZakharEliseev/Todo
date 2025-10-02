@@ -1,0 +1,4 @@
+npm run -s typecheck
+npm run -s lint
+npm run -s lint:css
+npm run -s format
