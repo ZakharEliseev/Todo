@@ -1,4 +1,5 @@
-import {TaskManager, UiManager} from './managers'
+import {UiManager} from './renderManager';
+import {TaskManager} from './taskManager';
 
 class App {
   private addBtn: HTMLButtonElement;
