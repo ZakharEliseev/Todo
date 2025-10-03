@@ -1,8 +1,6 @@
 import { Task } from './task';
-import { TaskManager } from './taskManager';
 
 export class UiManager {
-  taskManager = new TaskManager();
   todoList: HTMLUListElement;
 
   constructor() {
@@ -25,6 +23,6 @@ export class UiManager {
 
     this.todoList.append(li);
     li.append(completeBtn, descr, deleteBtn);
-    this.taskManager.getInputData().value = '';
+    // this.taskManager.getInputData().value = '';
   }
 }

@@ -12,6 +12,7 @@ export class TaskManager {
   createTask(): void {
     const task: Task = new Task(this.inputElement.value);
     this.list.push(task);
+    this.inputElement.value = '';
   }
 
   getTasks(): Array<Task> {
