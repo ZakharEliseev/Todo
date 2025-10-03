@@ -23,6 +23,5 @@ export class UiManager {
 
     this.todoList.append(li);
     li.append(completeBtn, descr, deleteBtn);
-    // this.taskManager.getInputData().value = '';
   }
 }
