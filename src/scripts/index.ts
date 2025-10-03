@@ -1,4 +1,5 @@
-import {TaskManager} from './taskManager'
+import {TaskManager, UiManager} from './managers'
+
 class App {
   private addBtn: HTMLButtonElement;
   private allBtn: HTMLButtonElement;
@@ -6,6 +7,7 @@ class App {
   private completeBtn: HTMLButtonElement;
   private filterBtns: Array<Element>;
   private taskManager = new TaskManager;
+  private uiManager = new UiManager;
 
   constructor() {
     this.addBtn = document.querySelector('#add')!;
@@ -18,6 +20,7 @@ class App {
   init(): void {
     this.addBtn.addEventListener('click', (): void => {
       this.taskManager.createTask();
+      this.uiManager.renderTask(this.taskManager.getTasks());
       this.updateUi();
     });
   }
