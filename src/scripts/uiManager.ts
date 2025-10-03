@@ -8,11 +8,12 @@ export class UiManager {
   }
 
   renderTask(list: Array<Task>): void {
-
-    for (let i = 0; i < list.length; i++){
+    this.todoList.replaceChildren()
+    for (let i = 0; i < list.length; i++) {
       const li: HTMLLIElement = document.createElement('li');
       const descr: HTMLParagraphElement = document.createElement('p');
       descr.textContent = list[i].value;
+
       const completeBtn: HTMLButtonElement = document.createElement('button');
       completeBtn.textContent = 'Complete';
       completeBtn.classList.add('todo-list__complete-btn');
