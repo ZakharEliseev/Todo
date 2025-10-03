@@ -1,23 +1,27 @@
+class Task {
+  constructor(
+    public value: string,
+    public id: number = Date.now(),
+    public isCompleted: boolean = false,
+  ) {}
+}
+
 export class TaskManager {
-  private tasks: string[];
   private input: HTMLInputElement;
-  private blockList: HTMLUListElement;
+  private taskList: Array<Task>;
 
   constructor() {
-    this.tasks = [];
-    this.input = document.querySelector('#input-line') as HTMLInputElement;
-    this.blockList = document.querySelector('#list')!;
+    this.input = document.querySelector('#input') as HTMLInputElement;
+    this.taskList = [];
   }
 
   createTask() {
-    const descr = document.createElement('p');
-
-    descr.textContent = this.input.value;
-    this.tasks.push(descr.textContent);
+    const task: Task = new Task(this.input.value);
+    this.taskList.push(task);
     this.input.value = '';
   }
 
   getTasks() {
-    console.log(this.tasks);
+    return this.taskList;
   }
 }
