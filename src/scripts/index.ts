@@ -1,5 +1,5 @@
-import { UiManager } from './renderManager';
 import { TaskManager } from './taskManager';
+import { UiManager } from './uiManager';
 
 class App {
   private form: HTMLFormElement;
