@@ -1,25 +1,18 @@
-import {UiManager} from './renderManager';
-import {TaskManager} from './taskManager';
+import { UiManager } from './renderManager';
+import { TaskManager } from './taskManager';
 
 class App {
-  private addBtn: HTMLButtonElement;
-  private allBtn: HTMLButtonElement;
-  private activeBtn: HTMLButtonElement;
-  private completeBtn: HTMLButtonElement;
-  private filterBtns: Array<Element>;
-  private taskManager = new TaskManager;
-  private uiManager = new UiManager;
+  private form: HTMLFormElement;
+  private taskManager = new TaskManager();
+  private uiManager = new UiManager();
 
   constructor() {
-    this.addBtn = document.querySelector('#add')!;
-    this.allBtn = document.querySelector('#all')!;
-    this.activeBtn = document.querySelector('#active')!;
-    this.completeBtn = document.querySelector('#complete')!;
-    this.filterBtns = Array.from(document.querySelector('#filter')!.children);
-
+    this.form = document.querySelector('.todo-form') as HTMLFormElement;
   }
+
   init(): void {
-    this.addBtn.addEventListener('click', (): void => {
+    this.form.addEventListener('submit', (e): void => {
+      e.preventDefault();
       this.taskManager.createTask();
       this.uiManager.renderTask(this.taskManager.getTasks());
       this.updateUi();

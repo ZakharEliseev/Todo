@@ -5,7 +5,7 @@ export class TaskManager {
   private list: Array<Task>;
 
   constructor() {
-    this.inputElement = document.querySelector('#input') as HTMLInputElement;
+    this.inputElement = document.querySelector('.todo-form__input') as HTMLInputElement;
     this.list = [];
   }
 

@@ -9,17 +9,15 @@
 
 <body>
   <h1>ToDo</h1>
-  <label class="todo-form">
-    <input type="text" name="task" class="form-input-task" placeholder="add tour task here.." id="input">
-    <button title="add-task" id="add">Add</button>
-  </label>
-  <div class="todo-task-block">
-    <ul class="block-list" id="list"></ul>
-  </div>
-  <div class="todo-filter-block" id="filter">
-    <button id="all" title="all">All</button>
-    <button id="active" title="active">Active</button>
-    <button id="complete" title="complete">Complete</button>
+  <form class="todo-form">
+    <input type="text" name="task" class="todo-form__input" placeholder="add tour task here..">
+    <button type="submit" title="add-task">Add</button>
+  </form>
+    <ul class="todo-list"></ul>
+  <div class="todo-filters">
+    <button class="todo-filters__button" title="all">All</button>
+    <button class="todo-filters__button" title="active">Active</button>
+    <button class="todo-filters__button" title="complete">Complete</button>
   </div>
   <script type="module" src="./src/main.ts"></script>
 </body>
