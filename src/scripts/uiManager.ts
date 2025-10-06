@@ -18,9 +18,9 @@ export class UiManager {
     const fragment: DocumentFragment = new DocumentFragment();
     list.forEach((t) => {
       const li: HTMLLIElement = document.createElement('li');
-      const value: HTMLParagraphElement = document.createElement('p');
-      value.textContent = t.value;
-      li.append(this.getButton('Complete'), value, this.getButton('Delete'));
+      const text: HTMLParagraphElement = document.createElement('p');
+      text.textContent = t.value;
+      li.append(this.getButton('Complete'), text, this.getButton('Delete'));
       fragment.append(li);
     });
     this.todoList.append(fragment);
