@@ -18,8 +18,4 @@ export class TaskManager {
   getTasks(): Array<Task> {
     return this.list;
   }
-
-  deleteTask(): void {
-    
-  }
 }
