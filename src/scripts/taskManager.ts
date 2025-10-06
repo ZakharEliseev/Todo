@@ -19,4 +19,7 @@ export class TaskManager {
     return this.list;
   }
 
+  deleteTask(): void {
+    
+  }
 }
