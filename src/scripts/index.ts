@@ -15,10 +15,8 @@ class App {
     this.form.addEventListener('submit', (e): void => {
       e.preventDefault();
       const tasks: Array<Task> = this.taskManager.getTasks();
-      const todoList: HTMLUListElement = this.uiManager.getTodoList();
       this.taskManager.createTask();
-      this.uiManager.renderTaskText(tasks);
-      this.uiManager.renderTaskBtns(todoList);
+      this.uiManager.render(tasks);
       this.updateUi();
     });
   }

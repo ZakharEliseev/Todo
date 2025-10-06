@@ -50,7 +50,6 @@ h1 {
       text-align: center;
       padding: 5px;
       word-break: normal;
-      order: 2;
 
       &-complete {
         color: grey;
@@ -58,14 +57,6 @@ h1 {
       }
     }
   }
-}
-
-.todo-list__complete-btn {
-  order: 1;
-}
-
-.todo-list__delete-btn {
-  order: 3;
 }
 
 .todo-filters {
