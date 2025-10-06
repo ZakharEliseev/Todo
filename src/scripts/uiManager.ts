@@ -7,13 +7,25 @@ export class UiManager {
     this.todoList = document.querySelector('.todo-list') as HTMLUListElement;
   }
 
-  renderTask(list: Array<Task>): void {
-    this.todoList.replaceChildren()
-    for (let i = 0; i < list.length; i++) {
+  getTodoList(): HTMLUListElement {
+    return this.todoList;
+  }
+
+  renderTaskText(list: Array<Task>): void {
+    this.todoList.replaceChildren();
+    let fragment: DocumentFragment = new DocumentFragment();
+    list.forEach((t) => {
       const li: HTMLLIElement = document.createElement('li');
       const descr: HTMLParagraphElement = document.createElement('p');
-      descr.textContent = list[i].value;
+      descr.textContent = t.value;
+      li.append(descr);
+      fragment.append(li);
+    });
+    this.todoList.append(fragment);
+  }
 
+  renderTaskBtns(list: HTMLUListElement): void {
+    Array.from(list.children).forEach((li) => {
       const completeBtn: HTMLButtonElement = document.createElement('button');
       completeBtn.textContent = 'Complete';
       completeBtn.classList.add('todo-list__complete-btn');
@@ -21,9 +33,7 @@ export class UiManager {
       const deleteBtn: HTMLButtonElement = document.createElement('button');
       deleteBtn.textContent = 'Delete';
       deleteBtn.classList.add('todo-list__delete-btn');
-
-      this.todoList.append(li);
-      li.append(completeBtn, descr, deleteBtn);
-    }
+      li.append(completeBtn, deleteBtn);
+    });
   }
 }

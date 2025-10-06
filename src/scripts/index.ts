@@ -1,3 +1,4 @@
+import { Task } from './task';
 import { TaskManager } from './taskManager';
 import { UiManager } from './uiManager';
 
@@ -13,15 +14,17 @@ class App {
   init(): void {
     this.form.addEventListener('submit', (e): void => {
       e.preventDefault();
+      const tasks: Array<Task> = this.taskManager.getTasks();
+      const todoList: HTMLUListElement = this.uiManager.getTodoList();
       this.taskManager.createTask();
-      this.uiManager.renderTask(this.taskManager.getTasks());
+      this.uiManager.renderTaskText(tasks);
+      this.uiManager.renderTaskBtns(todoList);
       this.updateUi();
     });
   }
 
   updateUi() {
     console.log('Ui is updated.');
-    console.log(this.taskManager.getTasks());
   }
 }
 
