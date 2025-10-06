@@ -12,15 +12,15 @@ export class UiManager {
     button.textContent = title;
     return button;
   }
-  
+
   render(list: Array<Task>): void {
     this.todoList.replaceChildren();
     const fragment: DocumentFragment = new DocumentFragment();
     list.forEach((t) => {
       const li: HTMLLIElement = document.createElement('li');
-      const descr: HTMLParagraphElement = document.createElement('p');
-      descr.textContent = t.value;
-      li.append(this.getButton('Complete'), descr, this.getButton('Delete'));
+      const value: HTMLParagraphElement = document.createElement('p');
+      value.textContent = t.value;
+      li.append(this.getButton('Complete'), value, this.getButton('Delete'));
       fragment.append(li);
     });
     this.todoList.append(fragment);
