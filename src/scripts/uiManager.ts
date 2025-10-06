@@ -7,15 +7,12 @@ export class UiManager {
     this.todoList = document.querySelector('.todo-list') as HTMLUListElement;
   }
 
-  getTodoList(): HTMLUListElement {
-    return this.todoList;
-  }
-
   getButton(title: string): HTMLButtonElement {
     const button: HTMLButtonElement = document.createElement('button');
     button.textContent = title;
     return button;
   }
+  
   render(list: Array<Task>): void {
     this.todoList.replaceChildren();
     const fragment: DocumentFragment = new DocumentFragment();
