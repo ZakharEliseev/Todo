@@ -14,7 +14,6 @@ export class UiManager {
   }
 
   render(list: Array<Task>): void {
-    this.todoList.replaceChildren();
     const fragment: DocumentFragment = new DocumentFragment();
     list.forEach((t) => {
       const li: HTMLLIElement = document.createElement('li');
@@ -23,6 +22,7 @@ export class UiManager {
       li.append(this.getButton('Complete'), text, this.getButton('Delete'));
       fragment.append(li);
     });
+    this.todoList.replaceChildren();
     this.todoList.append(fragment);
   }
 }
