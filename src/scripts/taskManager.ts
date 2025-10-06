@@ -19,7 +19,4 @@ export class TaskManager {
     return this.list;
   }
 
-  getInputData(): HTMLInputElement {
-    return this.inputElement;
-  }
 }
