@@ -14,14 +14,15 @@ class App {
   init(): void {
     this.form.addEventListener('submit', (e): void => {
       e.preventDefault();
-      const tasks: Array<Task> = this.taskManager.getTasks();
       this.taskManager.createTask();
+      const tasks: Array<Task> = this.taskManager.getTasks();
       this.uiManager.render(tasks);
       this.updateUi();
     });
   }
 
   updateUi() {
+    console.log(this.taskManager.getTasks());
     console.log('Ui is updated.');
   }
 }
