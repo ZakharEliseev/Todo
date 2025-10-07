@@ -5,13 +5,16 @@ import { UiManager } from './uiManager';
 class App {
   private form: HTMLFormElement;
   private taskManager = new TaskManager();
-  private uiManager = new UiManager();
+  private uiManager: UiManager;
 
   constructor() {
     this.form = document.querySelector('.todo-form') as HTMLFormElement;
+    this.uiManager = new UiManager(this.taskManager);
   }
 
   init(): void {
+    this.uiManager.eventDelete();
+    this.uiManager.eventComplete();
     this.form.addEventListener('submit', (e): void => {
       e.preventDefault();
       this.taskManager.createTask();

@@ -18,4 +18,14 @@ export class TaskManager {
   getTasks(): Array<Task> {
     return this.list;
   }
+
+  toggleComplete(taskId: number): void {
+    const task = this.list.find((t) => t.id === taskId);
+    if (task) task.isCompleted = !task.isCompleted;
+  }
+
+  deleteTask(taskId: number): void {
+    const taskIndex = this.list.findIndex((t) => t.id === taskId);
+    this.list.splice(taskIndex, 1)
+  }
 }
