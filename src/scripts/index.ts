@@ -15,19 +15,23 @@ export class App {
     this.form.addEventListener('submit', (e): void => {
       e.preventDefault();
       this.taskManager.createTask();
-      const tasks: Array<Task> = this.taskManager.getTasks();
-      this.uiManager.render(
-        tasks,
-        this.taskManager.deleteTask,
-        this.taskManager.toggleComplete,
-      );
       this.updateUi();
     });
   }
 
+  onDleteTask = (taskId: number) => {
+    this.taskManager.deleteTask(taskId);
+    this.updateUi();
+  };
+
+  onToggleTaskStatus = (taskId: number) => {
+    this.taskManager.toggleComplete(taskId);
+    this.updateUi();
+  };
+
   updateUi() {
-    console.log(this.taskManager.getTasks());
-    console.log('Ui is updated.');
+    const tasks: Array<Task> = this.taskManager.getTasks();
+    this.uiManager.render(tasks, this.onDleteTask, this.onToggleTaskStatus);
   }
 }
 

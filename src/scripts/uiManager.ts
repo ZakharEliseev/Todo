@@ -23,7 +23,9 @@ export class UiManager {
 
       const text: HTMLParagraphElement = document.createElement('p');
       text.textContent = t.value;
-      if (t.isCompleted === true) text.classList.add('todo-list__complete-task');
+      if (t.isCompleted) {
+        text.classList.add('todo-list__complete-task');
+      }
 
       const deleteBtn = this.getButton('Delete', () => remove(t.id));
       const completeBtn = this.getButton('Complete', () => complete(t.id));

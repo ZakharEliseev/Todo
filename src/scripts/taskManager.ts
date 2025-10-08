@@ -21,10 +21,12 @@ export class TaskManager {
 
   toggleComplete = (taskId: number): void => {
     const task = this.list.find((t) => t.id === taskId);
-    if (task) task.isCompleted = !task.isCompleted
-  }
+    if (task) {
+      task.isCompleted = !task.isCompleted;
+    }
+  };
 
   deleteTask = (taskId: number): void => {
     this.list = this.list.filter((t) => t.id !== taskId);
-  }
+  };
 }
