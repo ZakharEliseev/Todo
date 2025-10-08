@@ -19,7 +19,7 @@ export class App {
     });
   }
 
-  onDleteTask = (taskId: number) => {
+  onDeleteTask = (taskId: number) => {
     this.taskManager.deleteTask(taskId);
     this.updateUi();
   };
@@ -31,7 +31,7 @@ export class App {
 
   updateUi() {
     const tasks: Array<Task> = this.taskManager.getTasks();
-    this.uiManager.render(tasks, this.onDleteTask, this.onToggleTaskStatus);
+    this.uiManager.render(tasks, this.onDeleteTask, this.onToggleTaskStatus);
   }
 }
 
