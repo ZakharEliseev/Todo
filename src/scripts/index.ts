@@ -18,8 +18,8 @@ export class App {
       const tasks: Array<Task> = this.taskManager.getTasks();
       this.uiManager.render(
         tasks,
-        this.taskManager.deleteTask.bind(this.taskManager),
-        this.taskManager.toggleComplete.bind(this.taskManager),
+        this.taskManager.deleteTask,
+        this.taskManager.toggleComplete,
       );
       this.updateUi();
     });
