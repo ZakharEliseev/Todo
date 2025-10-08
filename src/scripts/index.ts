@@ -17,7 +17,10 @@ export class App {
       this.taskManager.createTask();
       const tasks: Array<Task> = this.taskManager.getTasks();
       this.uiManager.render(
-        tasks, this.taskManager.deleteTask, this.taskManager.toggleComplete);
+        tasks,
+        this.taskManager.deleteTask.bind(this.taskManager),
+        this.taskManager.toggleComplete.bind(this.taskManager),
+      );
       this.updateUi();
     });
   }
