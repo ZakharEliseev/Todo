@@ -25,7 +25,6 @@ export class TaskManager {
   }
 
   deleteTask = (taskId: number): void => {
-    const taskIndex = this.list.findIndex((t) => t.id === taskId);
-    if (taskIndex !== -1) this.list.splice(taskIndex, 1)
+    this.list = this.list.filter((t) => t.id !== taskId);
   }
 }
