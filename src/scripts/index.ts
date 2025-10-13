@@ -35,15 +35,15 @@ export class App {
       this.taskManager.createTask();
       this.updateUi();
     });
-    this.allBtn.addEventListener('click', (e) => {
+    this.allBtn.addEventListener('click', () => {
       this.filterManager.changeFilterStatus('all')
       this.updateUi();
     });
-    this.activeBtn.addEventListener('click', (e) => {
+    this.activeBtn.addEventListener('click', () => {
       this.filterManager.changeFilterStatus('active')
       this.updateUi();
     });
-    this.completeBtn.addEventListener('click', (e) => {
+    this.completeBtn.addEventListener('click', () => {
       this.filterManager.changeFilterStatus('completed')
       this.updateUi();
     });
