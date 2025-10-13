@@ -8,14 +8,12 @@ export class FilterManager {
     this.currentFilter = 'all';
   }
 
-  changeFilterStatus(filterStatus: string) {
+  changeFilterStatus(filterStatus: FilterType) {
     this.currentFilter = filterStatus;
   }
 
   getFilteredTasks(list: Task[]): Task[] {
     switch (this.currentFilter) {
-      case 'all':
-        return list;
       case 'active':
         return list.filter((t) => t.isCompleted === false);
       case 'completed':
