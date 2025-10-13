@@ -53,7 +53,6 @@ export class App {
     const tasks: Array<Task> = this.taskManager.getTasks();
     const filteredTask = this.filterManager.getFilteredTasks(tasks);
     this.uiManager.render(filteredTask, this.onDelete, this.onToggleStatusTask);
-    console.log(this.taskManager.getTasks());
   }
 }
 
