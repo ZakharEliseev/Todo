@@ -35,14 +35,17 @@ export class App {
       this.taskManager.createTask();
       this.updateUi();
     });
+
     this.allBtn.addEventListener('click', () => {
       this.filterManager.setFilter(FilterType.ALL);
       this.updateUi();
     });
+
     this.activeBtn.addEventListener('click', () => {
       this.filterManager.setFilter(FilterType.ACTIVE);
       this.updateUi();
     });
+    
     this.completeBtn.addEventListener('click', () => {
       this.filterManager.setFilter(FilterType.COMPLETED);
       this.updateUi();
