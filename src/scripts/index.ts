@@ -36,15 +36,15 @@ export class App {
       this.updateUi();
     });
     this.allBtn.addEventListener('click', () => {
-      this.filterManager.changeFilterStatus('all');
+      this.filterManager.setFilter('all');
       this.updateUi();
     });
     this.activeBtn.addEventListener('click', () => {
-      this.filterManager.changeFilterStatus('active');
+      this.filterManager.setFilter('active');
       this.updateUi();
     });
     this.completeBtn.addEventListener('click', () => {
-      this.filterManager.changeFilterStatus('completed');
+      this.filterManager.setFilter('completed');
       this.updateUi();
     });
   }
