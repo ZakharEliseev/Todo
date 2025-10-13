@@ -9,7 +9,7 @@ export class FilterManager {
     this.currentFilter = 'all';
   }
 
-  changeFilterStatus(filterStatus: FilterType) {
+  setFilter(filterStatus: FilterType) {
     this.currentFilter = filterStatus;
   }
 
