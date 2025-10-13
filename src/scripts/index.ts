@@ -1,4 +1,5 @@
 import { FilterManager, FilterType } from './filterManager';
+import { PaginationManager } from './paginationManager';
 import { Task } from './task';
 import { TaskManager } from './taskManager';
 import { UiManager } from './uiManager';
@@ -11,6 +12,7 @@ export class App {
   private taskManager = new TaskManager();
   private uiManager = new UiManager();
   private filterManager = new FilterManager();
+  private paginationManager = new PaginationManager();
 
   constructor() {
     this.form = document.querySelector('.todo-form') as HTMLFormElement;
@@ -29,6 +31,11 @@ export class App {
     this.updateUi();
   };
 
+  onSetCurrentPage = (pageNumber: number) => {
+    this.paginationManager.setCurrentPage(pageNumber);
+    this.updateUi();
+  }
+
   init(): void {
     this.form.addEventListener('submit', (e): void => {
       e.preventDefault();
@@ -45,7 +52,7 @@ export class App {
       this.filterManager.setFilter(FilterType.ACTIVE);
       this.updateUi();
     });
-    
+
     this.completeBtn.addEventListener('click', () => {
       this.filterManager.setFilter(FilterType.COMPLETED);
       this.updateUi();
@@ -55,7 +62,10 @@ export class App {
   updateUi() {
     const tasks: Array<Task> = this.taskManager.getTasks();
     const filteredTasks = this.filterManager.getFilteredTasks(tasks);
-    this.uiManager.render(filteredTasks, this.onDelete, this.onToggleStatusTask);
+    const paginatedTasks = this.paginationManager.getPaginatedTasks(filteredTasks);
+    this.uiManager.render(paginatedTasks, this.onDelete, this.onToggleStatusTask);
+    this.uiManager.renderPagination(filteredTasks, this.onSetCurrentPage);
+    console.log(this.taskManager.getTasks())
   }
 }
 

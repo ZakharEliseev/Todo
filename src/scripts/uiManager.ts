@@ -2,9 +2,11 @@ import { Task } from './task';
 
 export class UiManager {
   todoList: HTMLUListElement;
+  pagingBlock: HTMLDivElement;
 
   constructor() {
     this.todoList = document.querySelector('.todo-list') as HTMLUListElement;
+    this.pagingBlock = document.querySelector('.todo-paging') as HTMLDivElement;
   }
 
   getButton(title: string, callback: () => void): HTMLButtonElement {
@@ -16,7 +18,10 @@ export class UiManager {
   }
 
   render(
-    list: Array<Task>, remove: (taskId: number) => void, complete: (taskId: number) => void): void {
+    list: Array<Task>,
+    remove: (taskId: number) => void,
+    complete: (taskId: number) => void,
+  ): void {
     const fragment: DocumentFragment = new DocumentFragment();
     list.forEach((t) => {
       const li: HTMLLIElement = document.createElement('li');
@@ -36,5 +41,20 @@ export class UiManager {
 
     this.todoList.replaceChildren();
     this.todoList.append(fragment);
+  }
+
+  renderPagination(list: Task[], setCurrentPage: (page: number) => void) {
+    const totalPages = Math.ceil(list.length / 5);
+    const fragment = new DocumentFragment();
+    for (let i = 0; i < totalPages; i++) {
+      const pageBtn = document.createElement('button');
+      pageBtn.textContent = (i + 1).toString();
+      pageBtn.addEventListener('click', () => {
+        setCurrentPage(Number(pageBtn.textContent) - 1);
+      })
+      fragment.append(pageBtn);
+    }
+    this.pagingBlock.replaceChildren();
+    this.pagingBlock.append(fragment);
   }
 }

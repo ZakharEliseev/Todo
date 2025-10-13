@@ -16,7 +16,7 @@ export class TaskManager {
   }
 
   getTasks(): Array<Task> {
-    return this.list;
+    return [...this.list];
   }
 
   toggleComplete = (taskId: number): void => {

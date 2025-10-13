@@ -23,6 +23,9 @@ h1 {
   width: 300px;
   display: flex;
   justify-content: space-between;
+  button:active {
+    background-color: grey;
+  }
 }
 
 .todo-form__input {
@@ -63,8 +66,21 @@ h1 {
   width: 300px;
   display: flex;
   justify-content: space-between;
+  button:active {
+    background-color: grey;
+  }
 }
 
 .active-button {
   background-color: grey;
+}
+
+.todo-paging {
+  width: 300px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  button {
+    margin: 0 5px;
+  }
 }

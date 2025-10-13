@@ -20,9 +20,9 @@ export class FilterManager {
   getFilteredTasks(list: Task[]): Task[] {
     switch (this.currentFilter) {
       case 'active':
-        return list.filter((t) => t.isCompleted === false);
+        return list.filter((t) => !t.isCompleted);
       case 'completed':
-        return list.filter((t) => t.isCompleted === true);
+        return list.filter((t) => t.isCompleted);
       default: 
         return list;
     }
