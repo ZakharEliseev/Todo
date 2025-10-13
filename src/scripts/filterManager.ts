@@ -1,5 +1,6 @@
-type FilterType = 'all' | 'active' | 'completed';
 import { Task } from './task';
+
+type FilterType = 'all' | 'active' | 'completed';
 
 export class FilterManager {
   private currentFilter: string;
