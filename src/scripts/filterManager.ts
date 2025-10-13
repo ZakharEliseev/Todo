@@ -3,7 +3,7 @@ import { Task } from './task';
 type FilterType = 'all' | 'active' | 'completed';
 
 export class FilterManager {
-  private currentFilter: string;
+  private currentFilter: FilterType;
 
   constructor() {
     this.currentFilter = 'all';
