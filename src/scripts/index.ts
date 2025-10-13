@@ -51,8 +51,8 @@ export class App {
 
   updateUi() {
     const tasks: Array<Task> = this.taskManager.getTasks();
-    const filteredTask = this.filterManager.getFilteredTasks(tasks);
-    this.uiManager.render(filteredTask, this.onDelete, this.onToggleStatusTask);
+    const filteredTasks = this.filterManager.getFilteredTasks(tasks);
+    this.uiManager.render(filteredTasks, this.onDelete, this.onToggleStatusTask);
   }
 }
 
