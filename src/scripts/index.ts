@@ -1,4 +1,4 @@
-import { FilterManager } from './filterManager';
+import { FilterManager, FilterType } from './filterManager';
 import { Task } from './task';
 import { TaskManager } from './taskManager';
 import { UiManager } from './uiManager';
@@ -14,9 +14,9 @@ export class App {
 
   constructor() {
     this.form = document.querySelector('.todo-form') as HTMLFormElement;
-    this.allBtn = document.getElementById('all') as HTMLButtonElement;
-    this.activeBtn = document.getElementById('active') as HTMLButtonElement;
-    this.completeBtn = document.getElementById('complete') as HTMLButtonElement;
+    this.allBtn = document.getElementById(FilterType.ALL) as HTMLButtonElement;
+    this.activeBtn = document.getElementById(FilterType.ACTIVE) as HTMLButtonElement;
+    this.completeBtn = document.getElementById(FilterType.COMPLETED) as HTMLButtonElement;
   }
 
   onDelete = (taskId: number): void => {
@@ -36,15 +36,15 @@ export class App {
       this.updateUi();
     });
     this.allBtn.addEventListener('click', () => {
-      this.filterManager.setFilter('all');
+      this.filterManager.setFilter(FilterType.ALL);
       this.updateUi();
     });
     this.activeBtn.addEventListener('click', () => {
-      this.filterManager.setFilter('active');
+      this.filterManager.setFilter(FilterType.ACTIVE);
       this.updateUi();
     });
     this.completeBtn.addEventListener('click', () => {
-      this.filterManager.setFilter('completed');
+      this.filterManager.setFilter(FilterType.COMPLETED);
       this.updateUi();
     });
   }

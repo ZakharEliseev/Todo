@@ -1,12 +1,16 @@
 import { Task } from './task';
 
-type FilterType = 'all' | 'active' | 'completed';
+export enum FilterType {
+  ALL = 'all',
+  ACTIVE = 'active',
+  COMPLETED = 'completed',
+};
 
 export class FilterManager {
   private currentFilter: FilterType;
 
   constructor() {
-    this.currentFilter = 'all';
+    this.currentFilter = FilterType.ALL;
   }
 
   setFilter(filterStatus: FilterType) {
