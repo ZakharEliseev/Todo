@@ -6,18 +6,12 @@ import { UiManager } from './uiManager';
 
 export class App {
   private form: HTMLFormElement;
-  private allBtn: HTMLButtonElement;
-  private activeBtn: HTMLButtonElement;
-  private completeBtn: HTMLButtonElement;
   private taskManager = new TaskManager();
   private uiManager = new UiManager();
   private filterManager = new FilterManager();
   private paginationManager = new PaginationManager();
   constructor() {
     this.form = document.querySelector('.todo-form') as HTMLFormElement;
-    this.allBtn = document.getElementById(FilterType.ALL) as HTMLButtonElement;
-    this.activeBtn = document.getElementById(FilterType.ACTIVE) as HTMLButtonElement;
-    this.completeBtn = document.getElementById(FilterType.COMPLETED) as HTMLButtonElement;
   }
 
   onDelete = (taskId: number): void => {
@@ -42,18 +36,11 @@ export class App {
       this.updateUi();
     });
 
-    const filterBtns = document.querySelectorAll('.filter-button');
-
-    filterBtns.forEach((btn) => {
+    document.querySelectorAll('.filter-button').forEach((btn) => {
       btn.addEventListener('click', (e) => {
-        const filterButton = e.currentTarget as HTMLButtonElement;
-        const filterType = filterButton.id as FilterType;
-
-        if (Object.values(FilterType).includes(filterType)) {
-          this.filterManager.setFilter(filterType);
-          this.uiManager.toggleActiveBtn(filterBtns, btn);
-          this.updateUi();
-        }
+        const type = (e.target as HTMLElement).id as FilterType;
+        this.filterManager.setFilter(type);
+        this.updateUi();
       });
     });
   }
