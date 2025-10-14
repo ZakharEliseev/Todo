@@ -21,7 +21,7 @@ export class UiManager {
   toggleActiveFilter(type: FilterType): void {
     document.querySelectorAll('.filter-button').forEach((btn) => {
       const element = btn as HTMLElement;
-      element.classList.toggle('active', element.dataset.filter === type);
+      element.classList.toggle('active-button', element.dataset.type === type);
     });
   }
 

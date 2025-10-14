@@ -38,7 +38,7 @@ export class App {
 
     document.querySelectorAll('.filter-button').forEach((btn) => {
       btn.addEventListener('click', (e) => {
-        const type = (e.target as HTMLElement).id as FilterType;
+        const type = (e.currentTarget as HTMLElement).dataset.type as FilterType;
         this.filterManager.setFilter(type);
         this.updateUi();
       });
