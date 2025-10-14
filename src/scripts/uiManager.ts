@@ -1,3 +1,4 @@
+import { FilterType } from './filterManager';
 import { Task } from './task';
 
 export class UiManager {
@@ -17,9 +18,11 @@ export class UiManager {
     return button;
   }
 
-  toggleActiveBtn(btns: Array<HTMLButtonElement>, currentBtn: HTMLButtonElement) {
-    Array.from(btns).forEach((b) => (b.className = ''));
-    currentBtn.classList.add('active-button');
+  toggleActiveFilter(type: FilterType): void {
+    document.querySelectorAll('.filter-button').forEach((btn) => {
+      const element = btn as HTMLElement;
+      element.classList.toggle('active', element.dataset.filter === type);
+    });
   }
 
   render(
@@ -58,9 +61,6 @@ export class UiManager {
         setCurrentPage(i);
       });
       pageButtons.push(pageBtn);
-    }
-    if (pageButtons[currentPage]) {
-      this.toggleActiveBtn(pageButtons, pageButtons[currentPage]);
     }
     this.pagingBlock.replaceChildren();
     this.pagingBlock.append(...pageButtons);

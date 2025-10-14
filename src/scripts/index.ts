@@ -55,6 +55,7 @@ export class App {
       this.onSetCurrentPage,
       this.paginationManager.getCurrentPage(),
     );
+    this.uiManager.toggleActiveFilter(this.filterManager.getCurrentFilter());
   }
 }
 

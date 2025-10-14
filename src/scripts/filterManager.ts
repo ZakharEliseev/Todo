@@ -13,6 +13,10 @@ export class FilterManager {
     this.currentFilter = FilterType.ALL;
   }
 
+  getCurrentFilter() {
+    return this.currentFilter;
+  }
+
   setFilter(filterStatus: FilterType) {
     this.currentFilter = filterStatus;
   }
@@ -23,7 +27,7 @@ export class FilterManager {
         return list.filter((t) => !t.isCompleted);
       case FilterType.COMPLETED:
         return list.filter((t) => t.isCompleted);
-      default: 
+      default:
         return list;
     }
   }
