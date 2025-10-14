@@ -17,7 +17,7 @@ export class UiManager {
     return button;
   }
 
-  toggleActiveBtn(btns: HTMLButtonElement[], currentBtn: HTMLButtonElement) {
+  toggleActiveBtn(btns: Array<HTMLButtonElement>, currentBtn: HTMLButtonElement) {
     Array.from(btns).forEach((b) => (b.className = ''));
     currentBtn.classList.add('active-button');
   }

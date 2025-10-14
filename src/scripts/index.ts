@@ -9,7 +9,6 @@ export class App {
   private allBtn: HTMLButtonElement;
   private activeBtn: HTMLButtonElement;
   private completeBtn: HTMLButtonElement;
-  private filterBtns: HTMLButtonElement[];
   private taskManager = new TaskManager();
   private uiManager = new UiManager();
   private filterManager = new FilterManager();
@@ -19,10 +18,6 @@ export class App {
     this.allBtn = document.getElementById(FilterType.ALL) as HTMLButtonElement;
     this.activeBtn = document.getElementById(FilterType.ACTIVE) as HTMLButtonElement;
     this.completeBtn = document.getElementById(FilterType.COMPLETED) as HTMLButtonElement;
-    const filtersContainer = document.querySelector('.todo-filters');
-    this.filterBtns = filtersContainer
-      ? (Array.from(filtersContainer.children) as HTMLButtonElement[])
-      : [];
   }
 
   onDelete = (taskId: number): void => {
@@ -47,25 +42,19 @@ export class App {
       this.updateUi();
     });
 
-    this.allBtn.addEventListener('click', (e) => {
-      const thisBtn = e.currentTarget as HTMLButtonElement;
-      this.filterManager.setFilter(FilterType.ALL);
-      this.uiManager.toggleActiveBtn(this.filterBtns, thisBtn);
-      this.updateUi();
-    });
+    const filterBtns = document.querySelectorAll('.filter-button');
 
-    this.activeBtn.addEventListener('click', (e) => {
-      const thisBtn = e.currentTarget as HTMLButtonElement;
-      this.filterManager.setFilter(FilterType.ACTIVE);
-      this.uiManager.toggleActiveBtn(this.filterBtns, thisBtn);
-      this.updateUi();
-    });
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        const filterButton = e.currentTarget as HTMLButtonElement;
+        const filterType = filterButton.id as FilterType;
 
-    this.completeBtn.addEventListener('click', (e) => {
-      const thisBtn = e.currentTarget as HTMLButtonElement;
-      this.filterManager.setFilter(FilterType.COMPLETED);
-      this.uiManager.toggleActiveBtn(this.filterBtns, thisBtn);
-      this.updateUi();
+        if (Object.values(FilterType).includes(filterType)) {
+          this.filterManager.setFilter(filterType);
+          this.uiManager.toggleActiveBtn(filterBtns, btn);
+          this.updateUi();
+        }
+      });
     });
   }
 
@@ -74,8 +63,11 @@ export class App {
     const filteredTasks = this.filterManager.getFilteredTasks(tasks);
     const paginatedTasks = this.paginationManager.getPaginatedTasks(filteredTasks);
     this.uiManager.render(paginatedTasks, this.onDelete, this.onToggleStatusTask);
-    this.uiManager.renderPagination(filteredTasks, this.onSetCurrentPage, this.paginationManager.getCurrentPage());
-    console.log(this.filterBtns);
+    this.uiManager.renderPagination(
+      filteredTasks,
+      this.onSetCurrentPage,
+      this.paginationManager.getCurrentPage(),
+    );
   }
 }
 
