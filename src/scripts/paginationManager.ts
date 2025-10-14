@@ -4,14 +4,14 @@ export class PaginationManager {
   private currentPage: number;
 
   constructor() {
-    this.currentPage = 0;
+    this.currentPage = 1;
   }
 
-  getCurrentPage() {
+  getCurrentPage(): number {
     return this.currentPage;
   }
   
-  setCurrentPage(pageNumber: number) {
+  setCurrentPage(pageNumber: number): void {
     this.currentPage = pageNumber;
   }
 

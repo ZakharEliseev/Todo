@@ -40,6 +40,7 @@ export class App {
       btn.addEventListener('click', (e) => {
         const type = (e.currentTarget as HTMLElement).dataset.type as FilterType;
         this.filterManager.setFilter(type);
+        this.paginationManager.setCurrentPage(1);
         this.updateUi();
       });
     });
@@ -53,7 +54,6 @@ export class App {
     this.uiManager.renderPagination(
       filteredTasks,
       this.onSetCurrentPage,
-      this.paginationManager.getCurrentPage(),
     );
     this.uiManager.toggleActiveFilter(this.filterManager.getCurrentFilter());
   }

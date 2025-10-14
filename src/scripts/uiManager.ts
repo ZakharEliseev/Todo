@@ -51,7 +51,7 @@ export class UiManager {
     this.todoList.append(fragment);
   }
 
-  renderPagination(list: Task[], setCurrentPage: (page: number) => void, currentPage: number) {
+  renderPagination(list: Task[], setCurrentPage: (page: number) => void) {
     const totalPages = Math.ceil(list.length / 5);
     const pageButtons: HTMLButtonElement[] = [];
     for (let i = 0; i < totalPages; i++) {
