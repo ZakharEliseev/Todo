@@ -80,6 +80,9 @@ h1 {
   margin-top: 10px;
   display: flex;
   justify-content: center;
+  button:active {
+    background-color: grey;
+  }
   button {
     margin: 0 5px;
   }

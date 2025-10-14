@@ -17,6 +17,11 @@ export class UiManager {
     return button;
   }
 
+  toggleActiveBtn(btns: HTMLButtonElement[], currentBtn: HTMLButtonElement) {
+    Array.from(btns).forEach((b) => (b.className = ''));
+    currentBtn.classList.add('active-button');
+  }
+
   render(
     list: Array<Task>,
     remove: (taskId: number) => void,
@@ -43,18 +48,21 @@ export class UiManager {
     this.todoList.append(fragment);
   }
 
-  renderPagination(list: Task[], setCurrentPage: (page: number) => void) {
+  renderPagination(list: Task[], setCurrentPage: (page: number) => void, currentPage: number) {
     const totalPages = Math.ceil(list.length / 5);
-    const fragment = new DocumentFragment();
+    const pageButtons: HTMLButtonElement[] = [];
     for (let i = 0; i < totalPages; i++) {
       const pageBtn = document.createElement('button');
       pageBtn.textContent = (i + 1).toString();
       pageBtn.addEventListener('click', () => {
-        setCurrentPage(Number(pageBtn.textContent) - 1);
-      })
-      fragment.append(pageBtn);
+        setCurrentPage(i);
+      });
+      pageButtons.push(pageBtn);
+    }
+    if (pageButtons[currentPage]) {
+      this.toggleActiveBtn(pageButtons, pageButtons[currentPage]);
     }
     this.pagingBlock.replaceChildren();
-    this.pagingBlock.append(fragment);
+    this.pagingBlock.append(...pageButtons);
   }
 }

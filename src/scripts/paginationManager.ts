@@ -7,6 +7,10 @@ export class PaginationManager {
     this.currentPage = 0;
   }
 
+  getCurrentPage() {
+    return this.currentPage;
+  }
+  
   setCurrentPage(pageNumber: number) {
     this.currentPage = pageNumber;
   }
