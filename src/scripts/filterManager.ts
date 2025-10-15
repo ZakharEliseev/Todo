@@ -1,19 +1,24 @@
 import { Task } from './task';
+
 export enum FilterType {
   ALL = 'all',
   ACTIVE = 'active',
   COMPLETED = 'completed',
-};
+}
 
 export class FilterManager {
   private currentFilter: FilterType;
+  private savedFilter: FilterType;
   private storageKey: string = 'activeFilter';
-  private saveInStorage(): void {
-    localStorage.setItem(this.storageKey, this.currentFilter)
-  }
 
   constructor() {
     this.currentFilter = FilterType.ALL;
+    this.savedFilter = (localStorage.getItem('activeFilter') as FilterType) || FilterType.ALL;
+    this.setFilter(this.savedFilter);
+  }
+
+  private saveInStorage(): void {
+    localStorage.setItem(this.storageKey, this.currentFilter);
   }
 
   getCurrentFilter() {

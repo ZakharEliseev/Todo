@@ -1,15 +1,20 @@
 import { Task } from './task';
+
 export class TaskManager {
   private inputElement: HTMLInputElement;
   private list: Array<Task>;
+  private savedTasks: Array<Task>;
   private storageKey: string = 'tasks';
-  private saveInStorage(): void {
-    localStorage.setItem(this.storageKey, JSON.stringify(this.list));
-  }
 
   constructor() {
     this.inputElement = document.querySelector('.todo-form__input') as HTMLInputElement;
     this.list = [];
+    this.savedTasks = JSON.parse(localStorage.getItem('tasks')!) || [];
+    this.loadTask(this.savedTasks);
+  }
+
+  private saveInStorage(): void {
+    localStorage.setItem(this.storageKey, JSON.stringify(this.list));
   }
 
   createTask(): void {
