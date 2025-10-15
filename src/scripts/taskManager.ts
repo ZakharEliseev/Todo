@@ -1,5 +1,4 @@
 import { Task } from './task';
-
 export class TaskManager {
   private inputElement: HTMLInputElement;
   private list: Array<Task>;

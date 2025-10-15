@@ -1,8 +1,6 @@
 import { Task } from './task';
 
-class LocalStorageManager {
+export class LocalStorageManager {
 
-  saveInStorage(list: Array<Task>) {
-    
-  }
+
 }
