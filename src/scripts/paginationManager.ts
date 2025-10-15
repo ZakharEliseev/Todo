@@ -7,7 +7,6 @@ export class PaginationManager {
   private storageKey: string = 'page';
 
   constructor() {
-    this.currentPage = 0;
     this.currentPage = (parseInt(localStorage.getItem('page')!) as number) || 0;
     this.setCurrentPage(this.currentPage);
   }
