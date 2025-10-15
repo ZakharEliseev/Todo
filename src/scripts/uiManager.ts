@@ -51,11 +51,12 @@ export class UiManager {
     this.todoList.append(fragment);
   }
 
-  renderPagination(list: Task[], setCurrentPage: (page: number) => void) {
+  renderPagination(list: Task[], setCurrentPage: (page: number) => void, currentPage: number) {
     const totalPages = Math.ceil(list.length / 5);
     const pageButtons: HTMLButtonElement[] = [];
     for (let i = 0; i < totalPages; i++) {
       const pageBtn = document.createElement('button');
+      pageBtn.classList.toggle('active-button', i === currentPage)
       pageBtn.textContent = (i + 1).toString();
       pageBtn.addEventListener('click', () => {
         setCurrentPage(i);

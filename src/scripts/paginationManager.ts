@@ -2,9 +2,10 @@ import { Task } from "./task";
 
 export class PaginationManager {
   private currentPage: number;
+  private FIRST_PAGE = 0;
 
   constructor() {
-    this.currentPage = 1;
+    this.currentPage = 0;
   }
 
   getCurrentPage(): number {
@@ -13,6 +14,10 @@ export class PaginationManager {
   
   setCurrentPage(pageNumber: number): void {
     this.currentPage = pageNumber;
+  }
+
+  getFirstPage() {
+    return this.FIRST_PAGE
   }
 
   getPaginatedTasks(list: Task[]): Task[] {
