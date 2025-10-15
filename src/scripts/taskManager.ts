@@ -8,7 +8,6 @@ export class TaskManager {
   constructor() {
     this.inputElement = document.querySelector('.todo-form__input') as HTMLInputElement;
     this.list = JSON.parse(localStorage.getItem('tasks')!) || [];
-    this.loadTask(this.list);
   }
 
   private saveInStorage(): void {
@@ -20,10 +19,6 @@ export class TaskManager {
     this.list.push(task);
     this.saveInStorage();
     this.inputElement.value = '';
-  }
-
-  loadTask(list: Array<Task>) {
-    this.list = list;
   }
 
   getTasks(): Array<Task> {
