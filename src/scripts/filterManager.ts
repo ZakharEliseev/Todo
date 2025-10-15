@@ -11,8 +11,12 @@ export class FilterManager {
   private storageKey: string = 'activeFilter';
 
   constructor() {
-    this.currentFilter = localStorage.getItem('activeFilter') as FilterType || FilterType.ALL;
-    this.setFilter(this.currentFilter);
+    this.currentFilter = this.loadFilter();
+  }
+
+  private loadFilter(): FilterType {
+    const filter = localStorage.getItem('activeFilter');
+    return filter ? (filter as FilterType) : FilterType.ALL;
   }
 
   private saveInStorage(): void {

@@ -10,7 +10,7 @@ export class TaskManager {
     this.list = this.loadTasks();
   }
 
-  loadTasks(): Array<Task> {
+  private loadTasks(): Array<Task> {
     const tasks = localStorage.getItem(this.storageKey);
     return tasks ? JSON.parse(tasks) : [];
   }

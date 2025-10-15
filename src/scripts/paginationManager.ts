@@ -7,8 +7,12 @@ export class PaginationManager {
   private storageKey: string = 'page';
 
   constructor() {
-    this.currentPage = (parseInt(localStorage.getItem('page')!) as number) || 0;
-    this.setCurrentPage(this.currentPage);
+    this.currentPage = this.loadPage();
+  }
+
+  private loadPage(): number {
+    const page = localStorage.getItem(this.storageKey);
+    return page ? parseInt(page) : 0;
   }
 
   private saveInStorage(): void {
