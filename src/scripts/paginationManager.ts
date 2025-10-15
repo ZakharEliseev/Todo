@@ -5,12 +5,11 @@ export const FIRST_PAGE = 0;
 export class PaginationManager {
   private currentPage: number;
   private storageKey: string = 'page';
-  private savedPage: number;
 
   constructor() {
     this.currentPage = 0;
-    this.savedPage = (parseInt(localStorage.getItem('page')!) as number) || 0;
-    this.setCurrentPage(this.savedPage);
+    this.currentPage = (parseInt(localStorage.getItem('page')!) as number) || 0;
+    this.setCurrentPage(this.currentPage);
   }
 
   private saveInStorage(): void {

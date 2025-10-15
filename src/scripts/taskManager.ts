@@ -3,14 +3,13 @@ import { Task } from './task';
 export class TaskManager {
   private inputElement: HTMLInputElement;
   private list: Array<Task>;
-  private savedTasks: Array<Task>;
   private storageKey: string = 'tasks';
 
   constructor() {
     this.inputElement = document.querySelector('.todo-form__input') as HTMLInputElement;
     this.list = [];
-    this.savedTasks = JSON.parse(localStorage.getItem('tasks')!) || [];
-    this.loadTask(this.savedTasks);
+    this.list = JSON.parse(localStorage.getItem('tasks')!) || [];
+    this.loadTask(this.list);
   }
 
   private saveInStorage(): void {

@@ -8,13 +8,12 @@ export enum FilterType {
 
 export class FilterManager {
   private currentFilter: FilterType;
-  private savedFilter: FilterType;
   private storageKey: string = 'activeFilter';
 
   constructor() {
     this.currentFilter = FilterType.ALL;
-    this.savedFilter = (localStorage.getItem('activeFilter') as FilterType) || FilterType.ALL;
-    this.setFilter(this.savedFilter);
+    this.currentFilter = localStorage.getItem('activeFilter') as FilterType || FilterType.ALL;
+    this.setFilter(this.currentFilter);
   }
 
   private saveInStorage(): void {
