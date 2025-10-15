@@ -1,5 +1,5 @@
 import { FilterManager, FilterType } from './filterManager';
-import { PaginationManager } from './paginationManager';
+import { FIRST_PAGE, PaginationManager } from './paginationManager';
 import { Task } from './task';
 import { TaskManager } from './taskManager';
 import { UiManager } from './uiManager';
@@ -10,8 +10,21 @@ export class App {
   private uiManager = new UiManager();
   private filterManager = new FilterManager();
   private paginationManager = new PaginationManager();
+  private savedFilter: FilterType;
+  private savedPage: number;
+  private savedTasks: Array<Task> ;
+
   constructor() {
     this.form = document.querySelector('.todo-form') as HTMLFormElement;
+
+    this.savedFilter = localStorage.getItem('activeFilter') as FilterType || FilterType.ALL;
+    this.savedPage = (parseInt(localStorage.getItem('page')!) as number) || 0;
+    this.savedTasks = JSON.parse(localStorage.getItem('tasks')!) || [];
+
+    this.filterManager.setFilter(this.savedFilter);
+    this.paginationManager.setCurrentPage(this.savedPage);
+    this.taskManager.loadTask(this.savedTasks);
+    this.updateUi();
   }
 
   onDelete = (taskId: number): void => {
@@ -40,7 +53,7 @@ export class App {
       btn.addEventListener('click', (e) => {
         const type = (e.currentTarget as HTMLElement).dataset.type as FilterType;
         this.filterManager.setFilter(type);
-        this.paginationManager.setCurrentPage(this.paginationManager.getFirstPage());
+        this.paginationManager.setCurrentPage(FIRST_PAGE);
         this.updateUi();
       });
     });
@@ -54,10 +67,9 @@ export class App {
     this.uiManager.renderPagination(
       filteredTasks,
       this.onSetCurrentPage,
-      this.paginationManager.getCurrentPage()
+      this.paginationManager.getCurrentPage(),
     );
     this.uiManager.toggleActiveFilter(this.filterManager.getCurrentFilter());
-    console.log(this.taskManager.getTasks())
   }
 }
 

@@ -2,6 +2,10 @@ import { Task } from './task';
 export class TaskManager {
   private inputElement: HTMLInputElement;
   private list: Array<Task>;
+  private storageKey: string = 'tasks';
+  private saveInStorage(): void {
+    localStorage.setItem(this.storageKey, JSON.stringify(this.list));
+  }
 
   constructor() {
     this.inputElement = document.querySelector('.todo-form__input') as HTMLInputElement;
@@ -11,7 +15,12 @@ export class TaskManager {
   createTask(): void {
     const task: Task = new Task(this.inputElement.value);
     this.list.push(task);
+    this.saveInStorage();
     this.inputElement.value = '';
+  }
+
+  loadTask(list: Array<Task>) {
+    this.list = list;
   }
 
   getTasks(): Array<Task> {
@@ -22,10 +31,12 @@ export class TaskManager {
     const task = this.list.find((t) => t.id === taskId);
     if (task) {
       task.isCompleted = !task.isCompleted;
+      this.saveInStorage();
     }
   };
 
   deleteTask = (taskId: number): void => {
     this.list = this.list.filter((t) => t.id !== taskId);
+    this.saveInStorage();
   };
 }

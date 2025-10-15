@@ -1,5 +1,4 @@
 import { Task } from './task';
-
 export enum FilterType {
   ALL = 'all',
   ACTIVE = 'active',
@@ -8,6 +7,10 @@ export enum FilterType {
 
 export class FilterManager {
   private currentFilter: FilterType;
+  private storageKey: string = 'activeFilter';
+  private saveInStorage(): void {
+    localStorage.setItem(this.storageKey, this.currentFilter)
+  }
 
   constructor() {
     this.currentFilter = FilterType.ALL;
@@ -19,6 +22,7 @@ export class FilterManager {
 
   setFilter(filterStatus: FilterType) {
     this.currentFilter = filterStatus;
+    this.saveInStorage();
   }
 
   getFilteredTasks(list: Task[]): Task[] {

@@ -1,8 +1,13 @@
 import { Task } from "./task";
 
+export const FIRST_PAGE = 0;
+
 export class PaginationManager {
   private currentPage: number;
-  private FIRST_PAGE = 0;
+  private storageKey: string = 'page';
+  private saveInStorage(): void {
+    localStorage.setItem(this.storageKey, this.currentPage.toString())
+  }
 
   constructor() {
     this.currentPage = 0;
@@ -14,11 +19,9 @@ export class PaginationManager {
   
   setCurrentPage(pageNumber: number): void {
     this.currentPage = pageNumber;
+    this.saveInStorage();
   }
 
-  getFirstPage() {
-    return this.FIRST_PAGE
-  }
 
   getPaginatedTasks(list: Task[]): Task[] {
     const start = this.currentPage * 5;
