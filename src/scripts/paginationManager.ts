@@ -12,7 +12,7 @@ export class PaginationManager {
 
   private loadPage(): number {
     const page = localStorage.getItem(this.storageKey);
-    return page ? parseInt(page) : 0;
+    return page ? parseInt(page) : FIRST_PAGE;
   }
 
   private saveInStorage(): void {
