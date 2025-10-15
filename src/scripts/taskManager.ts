@@ -7,7 +7,7 @@ export class TaskManager {
 
   constructor() {
     this.inputElement = document.querySelector('.todo-form__input') as HTMLInputElement;
-    this.list = JSON.parse(localStorage.getItem('tasks')!) || [];
+    this.list = JSON.parse(localStorage.getItem(this.storageKey)!) || [];
   }
 
   private saveInStorage(): void {
