@@ -7,7 +7,12 @@ export class TaskManager {
 
   constructor() {
     this.inputElement = document.querySelector('.todo-form__input') as HTMLInputElement;
-    this.list = JSON.parse(localStorage.getItem(this.storageKey)!) || [];
+    this.list = this.loadTasks();
+  }
+
+  loadTasks(): Array<Task> {
+    const tasks = localStorage.getItem(this.storageKey);
+    return tasks ? JSON.parse(tasks) : [];
   }
 
   private saveInStorage(): void {
